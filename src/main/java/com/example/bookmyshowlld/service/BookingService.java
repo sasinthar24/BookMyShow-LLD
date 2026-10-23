@@ -22,7 +22,7 @@ public class BookingService {
 
 
 
-    public Booking bookTicket(List<ShowSeat> showSeatsList)
+    public Booking bookTicket(List<Long> showSeatsList)
     {
         List<ShowSeat> showSeats = showSeatRepository.findAllById(List.of(1L,2L));
 
@@ -30,6 +30,8 @@ public class BookingService {
         {
             System.out.println("Invalid  Show Seats");
         }
+
+        System.out.println(showSeats.get(0));
         return  null;
     }
 }

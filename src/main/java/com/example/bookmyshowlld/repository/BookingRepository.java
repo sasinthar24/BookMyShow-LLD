@@ -14,5 +14,5 @@ public interface BookingRepository extends JpaRepository<Booking,Long> {
 
     List<Booking> findTop190AllByShow(Show show);
 
-    List<Booking> custom(Show show);
+
 }

@@ -22,7 +22,7 @@ public class BookingController {
     public Booking createBooking(@RequestBody CreateBookingDto createBookingdto)
     {
 
-        return bookingService.bookTicket(null);
+        return bookingService.bookTicket(createBookingdto.getSeatIds());
     }
 
 }
