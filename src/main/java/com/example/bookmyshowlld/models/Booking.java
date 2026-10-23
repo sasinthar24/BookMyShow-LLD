@@ -4,8 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -14,6 +13,9 @@ import java.util.List;
 @Setter
 @Entity
 @Table(name = "booking")
+@NoArgsConstructor
+@Builder
+@AllArgsConstructor
 public class Booking extends BaseModel {
     @OneToMany
     private List<ShowSeat> show_seats;

@@ -1,7 +1,9 @@
 package com.example.bookmyshowlld.models;
 
 import jakarta.persistence.*;
+import lombok.Getter;
 
+@Getter
 @MappedSuperclass
 public class BaseModel {
 

@@ -1,7 +1,9 @@
 package com.example.bookmyshowlld.controllers;
 
+import com.example.bookmyshowlld.dtos.BookingResponseDto;
 import com.example.bookmyshowlld.dtos.CreateBookingDto;
 import com.example.bookmyshowlld.models.Booking;
+import com.example.bookmyshowlld.models.ShowSeat;
 import com.example.bookmyshowlld.service.BookingService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,10 +21,26 @@ public class BookingController {
     }
 
     @PostMapping("/create")
-    public Booking createBooking(@RequestBody CreateBookingDto createBookingdto)
+    public BookingResponseDto createBooking(@RequestBody CreateBookingDto createBookingdto)
     {
 
-        return bookingService.bookTicket(createBookingdto.getSeatIds());
+        Booking booking = bookingService.bookTicket(createBookingdto.getSeatIds());
+
+        return BookingResponseDto.builder()
+                .id(booking.getId())
+                .bookedAt(booking.getBooked_at())
+                .totalPrice(booking.getTotal_price())
+                .movieName(booking.getShow().getMovie().getName())
+                .theaterName(booking.getShow().getHall().getVenue().getName())
+                .showStartTime(booking.getShow().getStartTime())
+                .showSeatIds(
+                        booking.getShow_seats()
+                                .stream()
+                                .map(ShowSeat::getId)
+                                .toList()
+                )
+                .build();
+
     }
 
 }
